@@ -1,11 +1,11 @@
 package main
 
 import("fmt"
-       //"encoding/json"
        "database/sql"
        _ "github.com/lib/pq"
        "log"
        "net/http"
+       "encoding/json"
        "github.com/gorilla/mux")
 
 const (
@@ -16,10 +16,12 @@ const (
 )
 
 type Food struct {
-    id       int
-    name     string
-    calories uint16
+    Id       int    `json:"id"`
+    Name     string `json:"name"`
+    Calories uint16 `json:"calories"`
 }
+
+type Foods []Food
 
 
 func main() {
@@ -54,14 +56,16 @@ func GetFoods(w http.ResponseWriter, r *http.Request) {
 
     for rows.Next() {
         food := Food{}
-        err := rows.Scan(&food.id, &food.name, &food.calories)
+        err := rows.Scan(&food.Id, &food.Name, &food.Calories)
         if err != nil {
             log.Fatal(err)
         }
-        fmt.Println(food.id, food.name, food.calories)
+        fmt.Println(food.Id, food.Name, food.Calories)
         foods = append(foods, food)
     }
-    fmt.Fprint(w, foods)
+
+    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+    json.NewEncoder(w).Encode(foods)
 }
 func GetFood(w http.ResponseWriter, r *http.Request) {}
 func CreateFood(w http.ResponseWriter, r *http.Request) {}
