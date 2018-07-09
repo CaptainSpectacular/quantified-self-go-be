@@ -8,7 +8,7 @@ import (
 type Food struct {
     Id       int    `json:"id"`
     Name     string `json:"name"`
-    Calories uint16 `json:"calories"`
+    Calories string `json:"calories"`
 }
 
 type Foods []Food
@@ -53,6 +53,25 @@ func QueryFood(id string) Food {
 
     // Return food
     food := Food{}
+    for row.Next() {
+        err := row.Scan(&food.Id, &food.Name, &food.Calories)
+        if err != nil {
+            log.Fatal(err)
+        }
+    }
+
+    return food
+}
+
+func CreateFood(food Food) Food {
+    db := ConnectDB()
+    defer db.Close()
+
+    row, err := db.Query("INSERT INTO foods (name, calories) VALUES ($1, $2) RETURNING *", food.Name, food.Calories)
+
+    if err != nil {
+        log.Fatal(err)
+    }
     for row.Next() {
         err := row.Scan(&food.Id, &food.Name, &food.Calories)
         if err != nil {

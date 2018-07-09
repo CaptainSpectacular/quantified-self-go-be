@@ -39,4 +39,11 @@ var routes = Routes{
         "/foods/{id}",
         FoodShow,
     },
+
+    Route{
+        "FoodsCreate",
+        "POST",
+        "/foods",
+        FoodCreate,
+    },
 }
