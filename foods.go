@@ -40,3 +40,25 @@ func QueryFoods() []Food{
     return foods
 }
 
+func QueryFood(id string) Food {
+    // Connect to db
+    db := ConnectDB()
+    defer db.Close()
+
+    // Query for food
+    row, err := db.Query("SELECT * FROM foods WHERE id = $1", id)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Return food
+    food := Food{}
+    for row.Next() {
+        err := row.Scan(&food.Id, &food.Name, &food.Calories)
+        if err != nil {
+            log.Fatal(err)
+        }
+    }
+
+    return food
+}
