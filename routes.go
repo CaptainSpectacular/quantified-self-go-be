@@ -46,4 +46,11 @@ var routes = Routes{
         "/foods",
         FoodCreate,
     },
+
+    Route{
+        "FoodsDelete",
+        "DELETE",
+        "/foods/{id}",
+        FoodDelete,
+    },
 }

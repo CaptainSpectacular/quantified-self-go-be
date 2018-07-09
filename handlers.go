@@ -5,7 +5,6 @@ import (
     "encoding/json"
     "net/http"
     "io/ioutil"
-    "fmt"
 )
 
 type FoodStruct struct {
@@ -36,4 +35,9 @@ func FoodCreate(w http.ResponseWriter, r *http.Request) {
     response := CreateFood(food.Food)
     json.NewEncoder(w).Encode(response)
 }
-func DeleteFood(w http.ResponseWriter, r *http.Request) {}
+func FoodDelete(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+    id := mux.Vars(r)["id"]
+    DeleteFood(id)
+}

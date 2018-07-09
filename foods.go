@@ -81,3 +81,10 @@ func CreateFood(food Food) Food {
 
     return food
 }
+
+func DeleteFood(id string) {
+    db := ConnectDB()
+    defer db.Close()
+
+    db.Query("DELETE FROM foods WHERE id = $1", id)
+}
