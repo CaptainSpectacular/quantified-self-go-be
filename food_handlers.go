@@ -23,6 +23,7 @@ func FoodShow(w http.ResponseWriter, r *http.Request) {
     food := QueryFood(id)
     json.NewEncoder(w).Encode(food)
 }
+
 func FoodCreate(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -35,6 +36,19 @@ func FoodCreate(w http.ResponseWriter, r *http.Request) {
     response := CreateFood(food.Food)
     json.NewEncoder(w).Encode(response)
 }
+
+func FoodUpdate(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+    id := mux.Vars(r)["id"]
+
+    var food FoodStruct
+    body, _ := ioutil.ReadAll(r.Body)
+    json.Unmarshal(body, &food)
+
+    response := UpdateFood(id, food.Food)
+    json.NewEncoder(w).Encode(response)
+}
+
 func FoodDelete(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 

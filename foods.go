@@ -72,6 +72,7 @@ func CreateFood(food Food) Food {
     if err != nil {
         log.Fatal(err)
     }
+
     for row.Next() {
         err := row.Scan(&food.Id, &food.Name, &food.Calories)
         if err != nil {
@@ -80,6 +81,15 @@ func CreateFood(food Food) Food {
     }
 
     return food
+}
+
+func UpdateFood(id string, params Food) Food {
+    db := ConnectDB()
+    defer db.Close()
+
+    db.Query("UPDATE foods SET name = $1, calories = $2 WHERE id = $3", params.Name, params.Calories, id)
+
+    return QueryFood(id) 
 }
 
 func DeleteFood(id string) {
