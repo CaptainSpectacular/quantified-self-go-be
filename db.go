@@ -1,8 +1,8 @@
 package main
 
 import (
-    "database/sql"
-    _"github.com/lib/pq"
+    "github.com/jinzhu/gorm"
+    _"github.com/jinzhu/gorm/dialects/postgres"
     "log"
     "fmt"
 )
@@ -14,12 +14,10 @@ const (
     dbname = "qs_go"
 )
 
-func ConnectDB() *sql.DB {
-
+func ConnectDB() *gorm.DB {
     dbinfo := fmt.Sprintf("user=%s dbname=%s sslmode=disable",
                            user, dbname)
-    db, err := sql.Open("postgres", dbinfo)
-
+    db, err := gorm.Open("postgres", dbinfo)
     if err != nil {
         log.Fatal(err)
     }
