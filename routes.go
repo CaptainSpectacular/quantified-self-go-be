@@ -32,4 +32,39 @@ var routes = Routes{
         "/foods",
         FoodIndex,
     },
+
+    Route{
+        "FoodsShow",
+        "GET",
+        "/foods/{id}",
+        FoodShow,
+    },
+
+    Route{
+        "FoodsCreate",
+        "POST",
+        "/foods",
+        FoodCreate,
+    },
+
+    Route{
+        "FoodsDelete",
+        "DELETE",
+        "/foods/{id}",
+        FoodDelete,
+    },
+
+    Route{
+        "FoodsUpdate",
+        "PUT",
+        "/foods/{id}",
+        FoodUpdate,
+    },
+
+    Route{
+        "FoodsUpdate",
+        "PATCH",
+        "/foods/{id}",
+        FoodUpdate,
+    },
 }
