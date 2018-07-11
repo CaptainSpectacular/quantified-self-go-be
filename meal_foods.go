@@ -1,6 +1,6 @@
 package main
 
-type MealFoods struct {
+type MealFood struct {
     Id int
     Food_id int
     Meal_id int

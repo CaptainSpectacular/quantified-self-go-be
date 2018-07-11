@@ -81,4 +81,18 @@ var routes = Routes{
         "/meals/{id}/foods",
         MealShow,
     },
+
+    Route{
+        "MealsUpdate",
+        "POST",
+        "/meals/{mid}/foods/{fid}",
+        MealUpdate,
+    },
+
+    Route{
+        "MealsDelete",
+        "DELETE",
+        "/meals/{mid}/foods/{fid}",
+        MealDelete,
+    },
 }
