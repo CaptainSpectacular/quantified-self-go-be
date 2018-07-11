@@ -5,18 +5,18 @@ import (
     _"github.com/jinzhu/gorm/dialects/postgres"
     "log"
     "fmt"
+    "os"
 )
 
-const (
-    host   = ""
-    port   = 5432
-    user   = "lighthouse"
-    dbname = "qs_go"
-)
 
 func ConnectDB() *gorm.DB {
-    dbinfo := fmt.Sprintf("user=%s dbname=%s sslmode=disable",
-                           user, dbname)
+    host     := os.Getenv("HOST")
+    user     := os.Getenv("USER")
+    password := os.Getenv("PASSWORD")
+    dbname   := os.Getenv("DBNAME")
+
+    dbinfo := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable",
+                          host, user, password, dbname)
     db, err := gorm.Open("postgres", dbinfo)
     if err != nil {
         log.Fatal(err)
