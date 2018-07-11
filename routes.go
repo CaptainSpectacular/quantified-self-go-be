@@ -29,42 +29,70 @@ var routes = Routes{
     Route{
         "FoodsIndex",
         "GET",
-        "/foods",
+        "/api/v1/foods",
         FoodIndex,
     },
 
     Route{
         "FoodsShow",
         "GET",
-        "/foods/{id}",
+        "/api/v1/foods/{id}",
         FoodShow,
     },
 
     Route{
         "FoodsCreate",
         "POST",
-        "/foods",
+        "/api/v1/foods",
         FoodCreate,
     },
 
     Route{
         "FoodsDelete",
         "DELETE",
-        "/foods/{id}",
+        "/api/v1/foods/{id}",
         FoodDelete,
     },
 
     Route{
         "FoodsUpdate",
         "PUT",
-        "/foods/{id}",
+        "/api/v1/foods/{id}",
         FoodUpdate,
     },
 
     Route{
         "FoodsUpdate",
         "PATCH",
-        "/foods/{id}",
+        "/api/v1/foods/{id}",
         FoodUpdate,
+    },
+
+    Route{
+        "MealsIndex",
+        "GET",
+        "/api/v1/meals",
+        MealIndex,
+    },
+
+    Route{
+        "MealsShow",
+        "GET",
+        "/api/v1/meals/{id}/foods",
+        MealShow,
+    },
+
+    Route{
+        "MealsUpdate",
+        "POST",
+        "/api/v1/meals/{mid}/foods/{fid}",
+        MealUpdate,
+    },
+
+    Route{
+        "MealsDelete",
+        "DELETE",
+        "/api/v1/meals/{mid}/foods/{fid}",
+        MealDelete,
     },
 }
