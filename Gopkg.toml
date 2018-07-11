@@ -24,6 +24,9 @@
 #   go-tests = true
 #   unused-packages = true
 
+[metadata.heroku]
+  root-package = "api"
+  go-version = "go.1.10.3"
 
 [[constraint]]
   name = "github.com/gorilla/mux"
