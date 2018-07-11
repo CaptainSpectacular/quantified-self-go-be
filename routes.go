@@ -67,4 +67,11 @@ var routes = Routes{
         "/foods/{id}",
         FoodUpdate,
     },
+
+    Route{
+        "MealsIndex",
+        "GET",
+        "/meals",
+        MealIndex,
+    },
 }
