@@ -22,3 +22,13 @@ func QueryMeals() Meals{
 
     return meals
 }
+
+func QueryMeal(id string) Meal {
+    db := ConnectDB()
+    defer db.Close()
+
+    meal := Meal{}
+    db.Preload("Foods").First(&meal, id)
+
+    return meal
+}
