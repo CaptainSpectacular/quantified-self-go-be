@@ -11,9 +11,9 @@ func main() {
     router := NewRouter()
     c := cors.New(cors.Options{
         AllowedMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE"},
-        AllowedHeaders: []string{"Access-Control-Allow-Origin"},
+        AllowedHeaders: []string{"*"},
     })
-    handler := c.Handler(router) 
+    handler := c.Handler(router)
     port := os.Getenv("PORT")
     if port == "" {
         port = "3000"

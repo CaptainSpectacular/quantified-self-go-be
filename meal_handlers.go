@@ -8,14 +8,12 @@ import (
 
 func MealIndex(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
     meals := QueryMeals()
     json.NewEncoder(w).Encode(meals)
 }
 
 func MealShow(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
     id := mux.Vars(r)["id"]
     meal := QueryMeal(id)
     json.NewEncoder(w).Encode(meal)
@@ -23,7 +21,6 @@ func MealShow(w http.ResponseWriter, r *http.Request) {
 
 func MealUpdate(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
     mid := mux.Vars(r)["mid"]
     fid := mux.Vars(r)["fid"]
 
@@ -33,7 +30,6 @@ func MealUpdate(w http.ResponseWriter, r *http.Request) {
 
 func MealDelete(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Origin", "*")
     mid := mux.Vars(r)["mid"]
     fid := mux.Vars(r)["fid"]
 
