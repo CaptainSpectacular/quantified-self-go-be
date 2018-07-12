@@ -8,7 +8,6 @@ import (
 
 func MealIndex(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
     meals := QueryMeals()
     json.NewEncoder(w).Encode(meals)
@@ -16,7 +15,6 @@ func MealIndex(w http.ResponseWriter, r *http.Request) {
 
 func MealShow(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Add("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
     id := mux.Vars(r)["id"]
     meal := QueryMeal(id)
@@ -25,7 +23,6 @@ func MealShow(w http.ResponseWriter, r *http.Request) {
 
 func MealUpdate(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
     mid := mux.Vars(r)["mid"]
     fid := mux.Vars(r)["fid"]
@@ -36,7 +33,6 @@ func MealUpdate(w http.ResponseWriter, r *http.Request) {
 
 func MealDelete(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
     mid := mux.Vars(r)["mid"]
     fid := mux.Vars(r)["fid"]
