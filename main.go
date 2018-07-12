@@ -4,20 +4,18 @@ import(
     "log"
     "net/http"
     "os"
+    "github.com/rs/cors"
 )
 
 func main() {
     router := NewRouter()
+    handler := cors.Default().Handler(router)
     port := os.Getenv("PORT")
     if port == "" {
         port = "3000"
     }
 
-    log.Fatal(http.ListenAndServe(":"+port, router))
+    log.Fatal(http.ListenAndServe(":"+port, handler))
 }
 
-func SetupResponse(w *http.ResponseWriter, req *http.Request) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "*")
-    (*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, PATCH, DELETE")
-    (*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-}
+
