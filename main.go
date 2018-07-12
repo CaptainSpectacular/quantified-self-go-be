@@ -10,7 +10,7 @@ import(
 func main() {
     router := NewRouter()
     c := cors.New(cors.Options{
-        AllowedOrigins: []string{"*"},
+        AllowedOrigins: []string{"*", "http://qs-be-go.surge.sh/"},
         AllowedMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
         AllowedHeaders: []string{"*"},
     })
