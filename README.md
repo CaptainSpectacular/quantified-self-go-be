@@ -4,10 +4,19 @@ An (in progress) backend for quantified-self-fe written in Go.
 
 ## Setup
 >Clone this Repo
+
 ```git clone https://github.com/pollockcl/quantified-self-go-be```
+
+
 >Compile the app
+
+
 ```go build```
+
+
 >Run the executable
+
+
 ```./api```
 
 # Endpoints
