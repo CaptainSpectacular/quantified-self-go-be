@@ -9,7 +9,12 @@ import(
 
 func main() {
     router := NewRouter()
-    handler := cors.Default().Handler(router)
+    c := cors.New(cors.Options{
+        AllowedMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE"},
+        AllowedHeaders: []string{"*"},
+        Debug: true,
+    })
+    handler := c.Handler(router) 
     port := os.Getenv("PORT")
     if port == "" {
         port = "3000"
