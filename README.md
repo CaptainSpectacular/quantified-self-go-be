@@ -7,23 +7,29 @@ An (in progress) backend for quantified-self-fe written in Go.
 
 >Create the database OR change the db.go to point to a database of your choice
 
-```psql postgres
-   CREATE DATABASE qs_go```
+```
+   psql postgres
+   CREATE DATABASE qs_go
+```
 
 >Create tables
 
-```psql qs_go
+```
+   psql qs_go
    CREATE TABLE foods (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, calories INT NOT NULL)
    CREATE TABLE meals (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL)
-   CREATE TABLE meal_foods (id SERIAL PRIMARY KEY, food_id NOT NULL, meal_id NOT NULL)```
+   CREATE TABLE meal_foods (id SERIAL PRIMARY KEY, food_id NOT NULL, meal_id NOT NULL)
+```
 
 >Export environment variables in the terminal
 
-```export USER=username
+```
+   export USER=username
    export PASSWORD=password
    export DBNAME=dbname
    export SSLMODE=disable
-   export HOST=localhost```
+   export HOST=localhost
+```
 
 >Clone this Repo
 
