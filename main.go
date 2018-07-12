@@ -3,7 +3,6 @@ package main
 import(
     "log"
     "net/http"
-    "github.com/gorilla/handlers"
     "os"
 )
 
@@ -14,9 +13,10 @@ func main() {
         port = "3000"
     }
 
-    allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With"})
-    allowedOrigins := handlers.AllowedOrigins([]string{"*"})
-    allowedMethods := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"})
-    log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(allowedHeaders, allowedOrigins, allowedMethods)(router)))
+    log.Fatal(http.ListenAndServe(":"+port, router))
+}
+
+func EnableCors(w *http.ResponseWriter) {
+    (*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
