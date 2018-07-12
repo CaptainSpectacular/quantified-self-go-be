@@ -3,6 +3,7 @@ package main
 import(
     "log"
     "net/http"
+    "github.com/gorilla/handlers"
     "os"
 )
 
@@ -12,6 +13,10 @@ func main() {
     if port == "" {
         port = "3000"
     }
-    log.Fatal(http.ListenAndServe(":"+port, router))
+
+    allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With"})
+    allowedOrigins := handlers.AllowedOrigins([]string{"*"})
+    allowedMethods := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"})
+    log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(allowedHeaders, allowedOrigins, allowedMethods)(router)))
 }
 
